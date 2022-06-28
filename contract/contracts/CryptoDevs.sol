@@ -45,11 +45,11 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
      * Constructor for Crypto Devs takes in the baseURI to set _baseTokenURI for the collection.
      * It also initializes an instance of whitelist interface.
      */
-    constructor(string memory _baseURI, address _whitelistContract)
+    constructor(string memory baseURI, address whitelistContract)
         ERC721("Crypto Devs", "CD")
     {
-        _baseTokenURI = _baseURI;
-        whitelist = IWhitelist(_whitelistContract);
+        _baseTokenURI = baseURI;
+        whitelist = IWhitelist(whitelistContract);
     }
 
     /**
@@ -74,7 +74,7 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
             whitelist.whitelistedAddresses(msg.sender),
             "User not whitelisted"
         );
-        require(tokenIds < maxmaxTokenIds, "We are sold out");
+        require(tokenIds < maxTokenIds, "We are sold out");
         require(msg.value == price, "Wrong amount of Eth");
         tokenIds += 1;
 
@@ -89,7 +89,7 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
             presaleStarted && block.timestamp > presaleTimeEnded,
             "Presale is not done"
         );
-        require(tokenIds < maxmaxTokenIds, "We are sold out");
+        require(tokenIds < maxTokenIds, "We are sold out");
         require(msg.value == price, "Wrong amount of Eth");
         tokenIds += 1;
 
