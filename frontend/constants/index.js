@@ -1,6 +1,9 @@
-import { WHITELIST_CONTRACT_ADDRESS } from "./contractAddress";
+import { WHITELIST_CONTRACT_ADDRESS } from "./whitelistContractAddress";
+import { NFT_CONTRACT_ADDRESS } from './nftContractAddress'
 import WhiteList from './Whitelist.json'
+import CryptoDevs from './CryptoDevs.json'
 
-const abi = WhiteList.abi
+const whitelist_abi = WhiteList.abi
+const nft_abi = CryptoDevs.abi
 
-export {WHITELIST_CONTRACT_ADDRESS, abi}
+export {WHITELIST_CONTRACT_ADDRESS, whitelist_abi, NFT_CONTRACT_ADDRESS, nft_abi}
