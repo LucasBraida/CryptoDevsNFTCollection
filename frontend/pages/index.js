@@ -12,6 +12,8 @@ export default function Home() {
   const [presaleStarted, setPresaleStarted] = useState(false)
   const [presaleEnded, setPresaleEnded] = useState(false)
   const [tokenIdsMinted, setTokenIdsMinted] = useState(0)
+  //State to prevent spamming the alert to change network
+  const [wrongChain, setWrongChain] = useState(false)
   const [addressWhitelisted, setAddressWhitelisted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [numOfWhitelisted, setNumOfWhitelisted] = useState(0)
@@ -229,8 +231,9 @@ export default function Home() {
 
       const { chainId } = await web3Provider.getNetwork()
 
-      if (chainId !== 4) {
+      if (chainId !== 4 && !wrongChain) {
         alert("Change the network to Rinkeby")
+        setWrongChain(true)
         throw new Error('Change network to rinkeby')
       }
 
